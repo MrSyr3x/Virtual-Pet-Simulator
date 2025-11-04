@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pikachu Virtual Pet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="tui-window">
+    <header class="tui-header">
+      <h1>:: TUI-PET v1.0.1</h1>
+      <div class="status-light">
+        <span id="clock">00:00:00</span> <span id="status-symbol">⚡ ALIVE</span>
+      </div>
+    </header>
+
+    <div class="tui-pane">
+      <div class="pet-display">
+        <img id="pet-face-img" src="assets/awake.png" alt="Pikachu Virtual Pet">
+        <div id="pet-status">Initializing...</div>
+      </div>
+    </div>
+
+    <div class="tui-pane">
+      <h2 class="tui-log-label">:: ATTRIBUTE STATS</h2>
+      <div class="attributes-display">
+        <div class="attribute">
+          <label>Hunger</label>
+          <div class="tui-bar-container">
+            <div id="hunger-fill" class="tui-bar-fill fill-hunger"></div>
+            <span id="hunger-value" class="tui-bar-value">50%</span>
+          </div>
+        </div>
+        <div class="attribute">
+          <label>Happiness</label>
+          <div class="tui-bar-container">
+            <div id="happiness-fill" class="tui-bar-fill fill-happy"></div>
+            <span id="happiness-value" class="tui-bar-value">80%</span>
+          </div>
+        </div>
+        <div class="attribute">
+          <label>Energy</label>
+          <div class="tui-bar-container">
+            <div id="energy-fill" class="tui-bar-fill fill-energy"></div>
+            <span id="energy-value" class="tui-bar-value">90%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tui-pane">
+      <h2 class="tui-log-label">:: INTERACT (CMD)</h2>
+      <div class="interaction-buttons">
+        <button id="feed-btn" class="tui-button">:: feed ☺</button>
+        <button id="play-btn" class="tui-button">:: play ☻</button>
+        <button id="sleep-btn" class="tui-button">:: sleep ☾</button>
+      </div>
+    </div>
+
+    <div class="tui-pane">
+      <h2 class="tui-log-label">:: COMMAND LOG (OUTPUT)</h2>
+      <div class="tui-log-pane" id="command-log"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

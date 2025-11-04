@@ -1,0 +1,201 @@
+/* === Everforest Dark (Hard) Theme === */
+:root {
+  --bg-hard: #2f383e;       /* TUI Container Background */
+  --bg-soft: #3a464c;       /* Page Background */
+  --fg-text: #d3c6aa;       /* Text Color */
+  --fg-comment: #7a8478;    /* Muted Text/Labels */
+  --accent-green: #859b85;  /* Success */
+  --accent-yellow: #dbbc7f; /* Warning */
+  --accent-red: #e67e80;    /* Error */
+  --accent-blue: #83adad;   /* Borders / UI Lines */
+  --terminal-border: 2px solid var(--accent-blue);
+}
+
+/* === Base Layout === */
+body {
+  background-color: var(--bg-soft);
+  color: var(--fg-text);
+  font-family: 'DejaVu Sans Mono', 'Consolas', 'Courier New', monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* === TUI Window === */
+.tui-window {
+  background-color: var(--bg-hard);
+  padding: 20px;
+  border-radius: 6px;
+  max-width: 700px;
+  width: 100%;
+  border: var(--terminal-border);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5),
+              0 0 10px var(--accent-blue);
+}
+
+/* === Header === */
+.tui-header {
+  color: var(--accent-blue);
+  text-shadow: 0 0 4px var(--accent-blue);
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--accent-blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tui-header h1 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.status-light {
+  font-size: 0.9em;
+  color: var(--accent-green);
+  text-shadow: 0 0 5px var(--accent-green);
+}
+
+/* === Pane Containers === */
+.tui-pane {
+  border: 1px solid var(--fg-comment);
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+}
+
+.tui-log-label {
+  color: var(--accent-blue);
+  margin-bottom: 10px;
+}
+
+/* === Pet Display === */
+.pet-display {
+  text-align: center;
+  background-color: var(--bg-soft);
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#pet-face-img {
+  max-width: 90%;
+  height: auto;
+  max-height: 180px;
+  margin-bottom: 10px;
+  object-fit: contain;
+  filter: grayscale(10%) contrast(1.1) brightness(0.9);
+  transition: all 0.4s ease;
+}
+
+#pet-status {
+  font-size: 1em;
+  color: var(--accent-green);
+  text-shadow: 0 0 3px var(--accent-green);
+}
+
+/* === Attributes === */
+.attributes-display {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.attribute label {
+  color: var(--fg-comment);
+  font-size: 0.85em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.tui-bar-container {
+  border: 1px solid var(--fg-comment);
+  padding: 1px;
+  height: 1.5em;
+  position: relative;
+  overflow: hidden;
+}
+
+.tui-bar-fill {
+  height: 100%;
+  transition: width 0.3s ease-out;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.fill-happy { background-color: var(--accent-green); }
+.fill-hunger { background-color: var(--accent-yellow); }
+.fill-energy { background-color: var(--accent-blue); }
+
+.tui-bar-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.9em;
+  color: var(--bg-hard);
+  font-weight: bold;
+}
+
+/* === Buttons === */
+.interaction-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.tui-button {
+  background-color: var(--bg-hard);
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green);
+  padding: 8px 15px;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 1em;
+  flex-grow: 1;
+  margin: 0 5px;
+  text-shadow: 0 0 5px rgba(133, 155, 133, 0.5);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.tui-button:hover {
+  background-color: var(--accent-green);
+  color: var(--bg-hard);
+  text-shadow: none;
+}
+
+/* === Command Log === */
+.tui-log-pane {
+  height: 150px;
+  overflow-y: scroll;
+  background-color: var(--bg-soft);
+  padding: 10px;
+  border: 1px dashed var(--fg-comment);
+}
+
+.log-entry {
+  margin: 5px 0;
+  white-space: pre-wrap;
+}
+
+.log-error {
+  color: var(--accent-red);
+  text-shadow: 0 0 3px var(--accent-red);
+}
+
+.log-action {
+  color: var(--accent-green);
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  .tui-window { padding: 15px; }
+  .attributes-display { grid-template-columns: 1fr; gap: 10px; }
+  .interaction-buttons { flex-direction: column; }
+  .tui-button { margin: 5px 0; }
+}
