@@ -7,7 +7,7 @@ This is a minimalist, TUI-inspired web game built entirely with **HTML, CSS, and
 ---
 
 ## 🖼️ Preview  
-![Virtual Pet Simulator Screenshot](./assets/image.png)
+![Virtual Pet Simulator Screenshot](./assets/Image.png)
 
 ---
 
