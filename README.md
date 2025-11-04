@@ -6,6 +6,16 @@ This is a minimalist, TUI-inspired web game built entirely with **HTML, CSS, and
 
 ---
 
+## 🖼️ Preview  
+![Virtual Pet Simulator Screenshot](./assets/image.png)
+
+---
+
+## 🚀 Live Demo  
+🎮 **[Play Now](https://mrsyr3x.github.io/Virtual-Pet-Simulator/)**  
+
+---
+
 ## 💡 Highlights
 - 🐾 **Virtual Pet Logic** — hunger, happiness, and energy levels that update in real-time  
 - 🎨 **Everforest Theme** — warm, earthy tones with a terminal-style aesthetic  
