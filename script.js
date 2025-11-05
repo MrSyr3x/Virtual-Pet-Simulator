@@ -1,4 +1,3 @@
-// === ELEMENT REFERENCES ===
 const petImage = document.getElementById('pet-face-img');
 const petStatus = document.getElementById('pet-status');
 const feedBtn = document.getElementById('feed-btn');
@@ -14,16 +13,14 @@ const hungerValue = document.getElementById('hunger-value');
 const happinessValue = document.getElementById('happiness-value');
 const energyValue = document.getElementById('energy-value');
 
-// === INITIAL PET STATE ===
 let pet = {
-  hunger: 30,       // 0 = full, 100 = starving
-  happiness: 80,    // 0 = sad, 100 = very happy
-  energy: 85,       // 0 = exhausted, 100 = full energy
+  hunger: 30,
+  happiness: 80,
+  energy: 85,
   isSleeping: false,
   isFainted: false
 };
 
-// === IMAGE PATHS ===
 const imagePaths = {
   awake: "assets/awake.png",
   eating: "assets/eating.png",
@@ -35,7 +32,6 @@ const imagePaths = {
   fainted: "assets/fainted.png"
 };
 
-// === UTILITIES ===
 function clamp(val) {
   return Math.max(0, Math.min(100, val));
 }
@@ -50,18 +46,13 @@ function log(message, type = 'info') {
   commandLog.scrollTop = commandLog.scrollHeight;
 }
 
-// === STATE MANAGEMENT ===
 function getCurrentState() {
   if (pet.isFainted) return "fainted";
   if (pet.isSleeping) return "sleeping";
-
-  // Emotional states
   if (pet.energy < 20) return "tired";
-  if (pet.hunger > 80) return "hungry"; // fallback to sad if no hungry image
+  if (pet.hunger > 80) return "hungry";
   if (pet.happiness < 30) return "sad";
   if (pet.happiness > 90) return "happy";
-
-  // Default
   return "awake";
 }
 
@@ -105,7 +96,6 @@ function updateDisplay() {
   sleepBtn.textContent = pet.isSleeping ? ":: wake ☀" : ":: sleep ☾";
 }
 
-// === INTERACTIONS ===
 function handleFeed() {
   if (pet.isSleeping) return log("Pet is sleeping. Can't feed now.", "error");
   if (pet.isFainted) return;
@@ -140,13 +130,11 @@ function handleSleep() {
   updateDisplay();
 }
 
-// === CLOCK ===
 function updateClock() {
   const now = new Date();
   clockDisplay.textContent = now.toLocaleTimeString();
 }
 
-// === GAME LOOP ===
 function updateAttributes() {
   if (pet.isFainted) return;
 
@@ -160,7 +148,6 @@ function updateAttributes() {
     pet.happiness = clamp(pet.happiness - 1);
   }
 
-  // Critical conditions
   if (pet.hunger >= 100 || pet.energy <= 0) {
     pet.isFainted = true;
     updateDisplay();
@@ -172,7 +159,6 @@ function updateAttributes() {
   updateDisplay();
 }
 
-// === INITIALIZATION ===
 feedBtn.addEventListener('click', handleFeed);
 playBtn.addEventListener('click', handlePlay);
 sleepBtn.addEventListener('click', handleSleep);

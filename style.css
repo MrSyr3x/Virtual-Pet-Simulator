@@ -1,17 +1,15 @@
-/* === Everforest Dark (Hard) Theme === */
 :root {
-  --bg-hard: #2f383e;       /* TUI Container Background */
-  --bg-soft: #3a464c;       /* Page Background */
-  --fg-text: #d3c6aa;       /* Text Color */
-  --fg-comment: #7a8478;    /* Muted Text/Labels */
-  --accent-green: #859b85;  /* Success */
-  --accent-yellow: #dbbc7f; /* Warning */
-  --accent-red: #e67e80;    /* Error */
-  --accent-blue: #83adad;   /* Borders / UI Lines */
+  --bg-hard: #2f383e;
+  --bg-soft: #3a464c;
+  --fg-text: #d3c6aa;
+  --fg-comment: #7a8478;
+  --accent-green: #859b85;
+  --accent-yellow: #dbbc7f;
+  --accent-red: #e67e80;
+  --accent-blue: #83adad;
   --terminal-border: 2px solid var(--accent-blue);
 }
 
-/* === Base Layout === */
 body {
   background-color: var(--bg-soft);
   color: var(--fg-text);
@@ -25,7 +23,6 @@ body {
   font-size: 14px;
 }
 
-/* === TUI Window === */
 .tui-window {
   background-color: var(--bg-hard);
   padding: 20px;
@@ -37,7 +34,6 @@ body {
               0 0 10px var(--accent-blue);
 }
 
-/* === Header === */
 .tui-header {
   color: var(--accent-blue);
   text-shadow: 0 0 4px var(--accent-blue);
@@ -60,7 +56,6 @@ body {
   text-shadow: 0 0 5px var(--accent-green);
 }
 
-/* === Pane Containers === */
 .tui-pane {
   border: 1px solid var(--fg-comment);
   padding: 15px;
@@ -73,7 +68,6 @@ body {
   margin-bottom: 10px;
 }
 
-/* === Pet Display === */
 .pet-display {
   text-align: center;
   background-color: var(--bg-soft);
@@ -100,7 +94,6 @@ body {
   text-shadow: 0 0 3px var(--accent-green);
 }
 
-/* === Attributes === */
 .attributes-display {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -143,7 +136,6 @@ body {
   font-weight: bold;
 }
 
-/* === Buttons === */
 .interaction-buttons {
   display: flex;
   justify-content: space-around;
@@ -169,7 +161,6 @@ body {
   text-shadow: none;
 }
 
-/* === Command Log === */
 .tui-log-pane {
   height: 150px;
   overflow-y: scroll;
@@ -192,7 +183,6 @@ body {
   color: var(--accent-green);
 }
 
-/* === Responsive === */
 @media (max-width: 600px) {
   .tui-window { padding: 15px; }
   .attributes-display { grid-template-columns: 1fr; gap: 10px; }
