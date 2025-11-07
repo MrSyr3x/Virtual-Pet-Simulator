@@ -95,26 +95,37 @@ function updateDisplay() {
 }
 
 function handleFeed() {
-  if (pet.isSleeping) return log("Pet is sleeping. Can't feed now.", "error");
+  if (pet.isSleeping) {
+    log("Pet is sleeping. Can't feed now.", "error");
+    return;
+  }
   if (pet.isFainted) return;
-  pet.hunger = clamp(pet.hunger - 30);
-  pet.happiness = clamp(pet.happiness + 10);
-  pet.energy = clamp(pet.energy + 5);
+
+  pet.hunger = clamp(pet.hunger - 35);
+  pet.happiness = clamp(pet.happiness + 15);
+  pet.energy = clamp(pet.energy + 8);
   petImage.src = imagePaths.eating;
-  log("Feeding Pikachu... (-30 hunger, +10 happiness)", "action");
-  setTimeout(updateDisplay, 1500);
+  log("Feeding Pikachu... (-35 hunger, +15 happiness, +8 energy)", "action");
+  updateDisplay();
 }
 
 function handlePlay() {
-  if (pet.isSleeping) return log("Pet is sleeping. Can't play.", "error");
+  if (pet.isSleeping) {
+    log("Pet is sleeping. Can't play.", "error");
+    return;
+  }
   if (pet.isFainted) return;
-  if (pet.energy < 20) return log("Pikachu is too tired to play.", "error");
-  pet.happiness = clamp(pet.happiness + 20);
-  pet.energy = clamp(pet.energy - 15);
-  pet.hunger = clamp(pet.hunger + 10);
+  if (pet.energy < 25) {
+    log("Pikachu is too tired to play. Let it rest!", "error");
+    return;
+  }
+
+  pet.happiness = clamp(pet.happiness + 25);
+  pet.energy = clamp(pet.energy - 18);
+  pet.hunger = clamp(pet.hunger + 12);
   petImage.src = imagePaths.playing;
-  log("Playing with Pikachu! (+20 happiness, -15 energy, +10 hunger)", "action");
-  setTimeout(updateDisplay, 2000);
+  log("Playing with Pikachu! (+25 happiness, -18 energy, +12 hunger)", "action");
+  updateDisplay();
 }
 
 function handleSleep() {
@@ -131,20 +142,29 @@ function updateClock() {
 
 function updateAttributes() {
   if (pet.isFainted) return;
+
   if (pet.isSleeping) {
-    pet.energy = clamp(pet.energy + 6);
-    pet.hunger = clamp(pet.hunger + 2);
-    pet.happiness = clamp(pet.happiness + 1);
+    pet.energy = clamp(pet.energy + 8);
+    pet.hunger = clamp(pet.hunger + 3);
+    pet.happiness = clamp(pet.happiness + 2);
   } else {
-    pet.hunger = clamp(pet.hunger + 4);
-    pet.energy = clamp(pet.energy - 3);
-    pet.happiness = clamp(pet.happiness - 1);
+    pet.hunger = clamp(pet.hunger + 5);
+    pet.energy = clamp(pet.energy - 4);
+    pet.happiness = clamp(pet.happiness - 2);
   }
 
-  if (pet.hunger >= 100 || pet.energy <= 0) {
+  if (pet.hunger >= 100) {
     pet.isFainted = true;
     updateDisplay();
-    log("CRITICAL: Pikachu fainted! Restart required.", "error");
+    log("CRITICAL: Pikachu starved! Game Over.", "error");
+    feedBtn.disabled = playBtn.disabled = sleepBtn.disabled = true;
+    return;
+  }
+
+  if (pet.energy <= 0) {
+    pet.isFainted = true;
+    updateDisplay();
+    log("CRITICAL: Pikachu collapsed! Game Over.", "error");
     feedBtn.disabled = playBtn.disabled = sleepBtn.disabled = true;
     return;
   }
@@ -158,4 +178,4 @@ sleepBtn.addEventListener('click', handleSleep);
 
 updateDisplay();
 setInterval(updateClock, 1000);
-setInterval(updateAttributes, 3000);
+setInterval(updateAttributes, 2500);
