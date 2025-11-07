@@ -5,7 +5,6 @@ const playBtn = document.getElementById('play-btn');
 const sleepBtn = document.getElementById('sleep-btn');
 const clockDisplay = document.getElementById('clock');
 const commandLog = document.getElementById('command-log');
-
 const hungerFill = document.getElementById('hunger-fill');
 const happinessFill = document.getElementById('happiness-fill');
 const energyFill = document.getElementById('energy-fill');
@@ -60,7 +59,6 @@ function updateDisplay() {
   hungerFill.style.width = `${pet.hunger}%`;
   happinessFill.style.width = `${pet.happiness}%`;
   energyFill.style.width = `${pet.energy}%`;
-
   hungerValue.textContent = `${Math.floor(pet.hunger)}%`;
   happinessValue.textContent = `${Math.floor(pet.happiness)}%`;
   energyValue.textContent = `${Math.floor(pet.energy)}%`;
@@ -99,11 +97,9 @@ function updateDisplay() {
 function handleFeed() {
   if (pet.isSleeping) return log("Pet is sleeping. Can't feed now.", "error");
   if (pet.isFainted) return;
-
   pet.hunger = clamp(pet.hunger - 30);
   pet.happiness = clamp(pet.happiness + 10);
   pet.energy = clamp(pet.energy + 5);
-
   petImage.src = imagePaths.eating;
   log("Feeding Pikachu... (-30 hunger, +10 happiness)", "action");
   setTimeout(updateDisplay, 1500);
@@ -113,11 +109,9 @@ function handlePlay() {
   if (pet.isSleeping) return log("Pet is sleeping. Can't play.", "error");
   if (pet.isFainted) return;
   if (pet.energy < 20) return log("Pikachu is too tired to play.", "error");
-
   pet.happiness = clamp(pet.happiness + 20);
   pet.energy = clamp(pet.energy - 15);
   pet.hunger = clamp(pet.hunger + 10);
-
   petImage.src = imagePaths.playing;
   log("Playing with Pikachu! (+20 happiness, -15 energy, +10 hunger)", "action");
   setTimeout(updateDisplay, 2000);
@@ -137,7 +131,6 @@ function updateClock() {
 
 function updateAttributes() {
   if (pet.isFainted) return;
-
   if (pet.isSleeping) {
     pet.energy = clamp(pet.energy + 6);
     pet.hunger = clamp(pet.hunger + 2);
