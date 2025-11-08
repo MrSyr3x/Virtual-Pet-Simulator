@@ -1,16 +1,16 @@
-const petImage = document.getElementById('pet-face-img');
-const petStatus = document.getElementById('pet-status');
-const feedBtn = document.getElementById('feed-btn');
-const playBtn = document.getElementById('play-btn');
-const sleepBtn = document.getElementById('sleep-btn');
-const clockDisplay = document.getElementById('clock');
-const commandLog = document.getElementById('command-log');
-const hungerFill = document.getElementById('hunger-fill');
-const happinessFill = document.getElementById('happiness-fill');
-const energyFill = document.getElementById('energy-fill');
-const hungerValue = document.getElementById('hunger-value');
-const happinessValue = document.getElementById('happiness-value');
-const energyValue = document.getElementById('energy-value');
+let petImage;
+let petStatus;
+let feedBtn;
+let playBtn;
+let sleepBtn;
+let clockDisplay;
+let commandLog;
+let hungerFill;
+let happinessFill;
+let energyFill;
+let hungerValue;
+let happinessValue;
+let energyValue;
 
 let pet = {
   hunger: 30,
@@ -172,10 +172,37 @@ function updateAttributes() {
   updateDisplay();
 }
 
-feedBtn.addEventListener('click', handleFeed);
-playBtn.addEventListener('click', handlePlay);
-sleepBtn.addEventListener('click', handleSleep);
+function init() {
+  petImage = document.getElementById('pet-face-img');
+  petStatus = document.getElementById('pet-status');
+  feedBtn = document.getElementById('feed-btn');
+  playBtn = document.getElementById('play-btn');
+  sleepBtn = document.getElementById('sleep-btn');
+  clockDisplay = document.getElementById('clock');
+  commandLog = document.getElementById('command-log');
+  hungerFill = document.getElementById('hunger-fill');
+  happinessFill = document.getElementById('happiness-fill');
+  energyFill = document.getElementById('energy-fill');
+  hungerValue = document.getElementById('hunger-value');
+  happinessValue = document.getElementById('happiness-value');
+  energyValue = document.getElementById('energy-value');
 
-updateDisplay();
-setInterval(updateClock, 1000);
-setInterval(updateAttributes, 2500);
+  if (!petImage || !feedBtn || !playBtn || !sleepBtn || !commandLog) {
+    console.error('Initialization failed: some DOM elements not found. Check IDs in HTML.');
+    return;
+  }
+
+  feedBtn.addEventListener('click', handleFeed);
+  playBtn.addEventListener('click', handlePlay);
+  sleepBtn.addEventListener('click', handleSleep);
+
+  updateDisplay();
+  setInterval(updateClock, 1000);
+  setInterval(updateAttributes, 2500);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
